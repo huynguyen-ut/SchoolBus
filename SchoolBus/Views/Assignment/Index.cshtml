@@ -1,0 +1,350 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex">
+
+    <title>School Bus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <style type="text/css">
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            /*
+        http://www.sitepoint.com/web-foundations/css3-attribute-selectors/
+        */
+
+            div[class^="col-"], div[class*=" tocolor-"] {
+                background-color: #eee;
+                border: 2px solid #fff;
+                text-align: left;
+                padding: 16px;
+            }
+
+            h3 {
+                color: blue;
+            }
+
+            /*
+        Thanks to:
+         By Valentin Garcia 15 October 2015
+        https://www.ostraining.com/blog/coding/responsive-google-maps/
+        */
+            .map-responsive {
+                overflow: hidden;
+                padding-bottom: 56.25%;
+                position: relative;
+                height: 0;
+            }
+
+                .map-responsive iframe {
+                    left: 0;
+                    top: 0;
+                    height: 100%;
+                    width: 100%;
+                    position: absolute;
+                }
+
+            #map {
+                height: 100%;
+            }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h2>School Bus <small>Demo site</small></h2>
+            <div id="map_area" class="col-lg-9 col-md-9 col-sm-9">
+                <div class="map-responsive">
+                    <div id="map"></div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-parent="#accordion" href="#collapse1" id="tab1">School</a>
+                            <label class="checkbox-inline pull-right"><input type="checkbox" value="" checked id="school_show">Show</label>
+                        </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse in">
+                        <div class="panel-body form-group">
+                            <textarea class="form-control" rows="5" id="school"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-parent="#accordion" href="#collapse2" id="tab2">Student</a>
+                            <label class="checkbox-inline pull-right"><input type="checkbox" value="" checked id="student_show">Show</label>
+                        </h4>
+                    </div>
+                    <div id="collapse2" class="panel-collapse collapse">
+                        <div class="panel-body form-group">
+                            <textarea class="form-control" rows="5" id="student"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-parent="#accordion" href="#collapse3" id="tab3">Station</a>
+                            <label class="checkbox-inline pull-right"><input type="checkbox" value="" checked id="station_show">Show</label>
+                        </h4>
+                    </div>
+                    <div id="collapse3" class="panel-collapse collapse">
+                        <div class="panel-body form-group">
+                            <textarea class="form-control" rows="5" id="station"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button id="show" type="button" class="btn btn-success pull-right">Show</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        schools = [];
+        school_markers = [];
+        students = [];
+        student_markers = [];
+        stations = [];
+        station_markers = [];       
+        colors = [];
+        $(document).ready(function () {
+            var iframe_height = $('#map_area').height();
+            $('#map').height(iframe_height);
+            $('#show').click(function () {
+                clearAll();
+                showResult();
+            });
+            $("#school_show").change(function () {
+                myVisible(school_markers, this.checked);
+            });
+            $("#student_show").change(function () {
+                myVisible(student_markers, this.checked);
+            });
+            $("#station_show").change(function () {
+                myVisible(station_markers, this.checked);
+            });
+           
+            $("#tab1,#tab2,#tab3").click(function () {
+                $(".panel-collapse").removeClass('in', 1000);
+                $("#collapse" + this.id.split('tab')[1]).collapse('show', 1000);
+            });
+        });
+
+        function showResult() {
+            /////school
+            var school_input = $('#school').val().split('\n');
+            for (var i = 0; i < school_input.length; i++) {
+                if (checkAvailable(school_input[i])) {
+                    var school_detail = school_input[i].split('\t');
+                    schools.push({
+                        name: school_detail[0],
+                        lat: school_detail[1],
+                        lng: school_detail[2],
+                        show: $('#school_show').is(":checked")
+                    });
+                }
+            }
+            ////student
+            var student_input = $('#student').val().split('\n');
+            for (var i = 0; i < student_input.length; i++) {
+                if (checkAvailable(student_input[i])) {
+                    var student_detail = student_input[i].split('\t');
+                    students.push({
+                        id: student_detail[0],
+                        lat: student_detail[1],
+                        lng: student_detail[2],
+                        show: $('#student_show').is(":checked")
+                    });
+                }
+            }
+            ////station
+            var station_input = $('#station').val().split('\n');
+            for (var i = 0; i < station_input.length; i++) {
+                if (checkAvailable(station_input[i])) {
+                    var station_detail = station_input[i].split('\t');
+                    stations.push({
+                        id: station_detail[0],
+                        lat: station_detail[1],
+                        lng: station_detail[2],
+                        nb: station_detail[3],
+                        show: $('#station_show').is(":checked")
+                    });
+                }
+            }
+          
+            initAutocomplete();
+        }
+
+        function initAutocomplete() {
+            iconRouteStation = {
+                url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle_blue.png",
+                size: new google.maps.Size(7, 7),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(7, 7),
+                scaledSize: new google.maps.Size(7, 7),
+            };
+            iconSchool = {
+                url: "http://maps.gstatic.com/mapfiles/place_api/icons/school-71.png",
+                size: new google.maps.Size(31, 31),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(0, 0),
+                scaledSize: new google.maps.Size(15, 15),
+            };
+
+            iconStudent = {
+                url: "https://storage.googleapis.com/support-kms-prod/SNP_2752125_en_v0",
+                size: new google.maps.Size(9, 9),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(9, 9),
+                scaledSize: new google.maps.Size(9, 9),
+            };
+
+            iconStation = {
+                url: "https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png",
+                size: new google.maps.Size(31, 31),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(10, 10),
+                scaledSize: new google.maps.Size(15, 15),
+            };
+
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 10.885213, lng: 106.651882 },
+                zoom: 13,
+                mapTypeId: 'roadmap'
+            });
+
+            google.maps.event.addDomListener(window, "resize", function () {
+                var iframe_height = $('#map_area').height();
+                $('#map').height(iframe_height);
+                var center = map.getCenter();
+                google.maps.event.trigger(map, "resize");
+                map.setCenter(center);
+            });
+
+            /// add school marker
+            for (var k = 0; k < schools.length; k++) {
+                var myinfowindow = new google.maps.InfoWindow({
+                    content: 'name:' + schools[k].name + '; lat:' + schools[k].lat + '; lng:' + schools[k].lng
+                });
+
+                // Create a marker for each place.
+                school_markers.push(new google.maps.Marker({
+                    map: map,
+                    icon: iconSchool,
+                    title: schools[k].name,
+                    position: new google.maps.LatLng(schools[k].lat, schools[k].lng),
+                    setMap: map,
+                    visible: schools[k].show,
+                    infowindow: myinfowindow
+                }));
+                google.maps.event.addListener(school_markers[k], 'click', function () {
+                    this.infowindow.open(map, this);
+                });
+            }
+            /// add student marker
+            for (var k = 0; k < students.length; k++) {
+                var myinfowindow = new google.maps.InfoWindow({
+                    content: 'id:' + students[k].id + '; lat:' + students[k].lat + '; lng:' + students[k].lng
+                });
+
+                // Create a marker for each place.
+                student_markers.push(new google.maps.Marker({
+                    map: map,
+                    icon: iconStudent,
+                    title: students[k].id,
+                    position: new google.maps.LatLng(students[k].lat, students[k].lng),
+                    setMap: map,
+                    visible: students[k].show,
+                    infowindow: myinfowindow
+                }));
+                google.maps.event.addListener(student_markers[k], 'click', function () {
+                    this.infowindow.open(map, this);
+                });
+            }
+            /// add station marker
+            for (var k = 0; k < stations.length; k++) {
+                var myinfowindow = new google.maps.InfoWindow({
+                    content: 'id:' + stations[k].id + '; lat:' + stations[k].lat + '; lng:' + stations[k].lng + '; nb:' + stations[k].nb
+                });
+
+                // Create a marker for each place.
+                station_markers.push(new google.maps.Marker({
+                    map: map,
+                    icon: iconStation,
+                    title: stations[k].id,
+                    position: new google.maps.LatLng(stations[k].lat, stations[k].lng),
+                    setMap: map,
+                    visible: stations[k].show,
+                    infowindow: myinfowindow
+                }));
+                google.maps.event.addListener(station_markers[k], 'click', function () {
+                    this.infowindow.open(map, this);
+                });
+            }
+
+           
+        }
+
+       
+        function myVisible(arr, show) {
+            for (var i = 0; i < arr.length; i++) {
+                arr[i].setVisible(show)
+            }
+        }
+
+        function getRandomColor() {
+            var letters = '12345789ABCDE';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 13)];
+            }
+            return color;
+        }
+
+        function checkAvailable(obj) {
+            if (obj != '' && obj != null && obj != undefined) {
+                return true;
+            }
+            else
+                return false;
+        }
+
+       
+
+        function setDelay(fun) {
+            setTimeout(function () {
+                return fun;
+            }, 900);
+        }
+
+        function clearAll() {
+            schools = [];
+            school_markers = [];
+            students = [];
+            student_markers = [];
+            stations = [];
+            station_markers = [];           
+            colors = [];
+           
+        }
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCI23HUoG4zqAvSwheflDAXaoYDX0cB96c&libraries=places&callback=initAutocomplete"
+            async defer></script>
+</body>
+</html>
