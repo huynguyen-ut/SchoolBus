@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RouteProblem.model
 {
-    class Bus
+    class Bus:IComparable
     {
        
         private int id;
@@ -57,7 +57,8 @@ namespace RouteProblem.model
         public bool IsComplete
         {
             get { return isComplete; }
-            set { isComplete = value; }
+            set {     
+                 isComplete = value; }
         }
         private List<Student> students;
 
@@ -69,7 +70,7 @@ namespace RouteProblem.model
         public void addStudent(Student student) {
             this.students.Add(student);
         }
-        private Path path;
+        private RouteProblem.Path path;
 
         internal Path Path
         {
@@ -81,7 +82,7 @@ namespace RouteProblem.model
 
             this.id = id;
             this.capacity = capacity;
-            this.path = new Path(id);
+            this.path = new RouteProblem.Path(id);
             this.isComplete = false;
             this.curStation = null;
             this.runningTime = 0;
@@ -117,7 +118,7 @@ namespace RouteProblem.model
                 this.states.Add(state);
             }
             this.curStation = station;
-            this.path.addStation(station);
+            this.path.addStation(station,this.runningTime,this.distance);
           
             int nsit=this.getNumberSit() ;
             int nstudent=station.Students.Count;
@@ -160,6 +161,13 @@ namespace RouteProblem.model
                 return true;
             else return false;
         }
-          
+
+        public int CompareTo(object obj)
+        {
+            if (this.runningTime> ((Bus)obj).runningTime)
+                return 1;
+            else if (this.runningTime < ((Bus)obj).runningTime) return -1;
+            else return 0;
+        }
     }
 }

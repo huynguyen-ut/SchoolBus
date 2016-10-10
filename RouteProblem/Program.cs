@@ -1,10 +1,7 @@
 ﻿using RouteProblem.data;
 using RouteProblem.heuristic;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace RouteProblem
 {
@@ -19,6 +16,7 @@ namespace RouteProblem
             heuristic.Run();
             heuristic.PrintSolution();
             heuristic.PrintFileSolution();
+           
            // Route f = new Route();
            // f.Show();
             Console.ReadKey();

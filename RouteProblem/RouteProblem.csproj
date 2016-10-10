@@ -139,9 +139,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="data\ReadData.cs" />
+    <Compile Include="model\Route.cs" />
     <Compile Include="routing\Heuristic.cs" />
     <Compile Include="routing\MathModel.cs" />
-    <Compile Include="routing\Route.cs" />
     <Compile Include="model\Location.cs" />
     <Compile Include="model\Bus.cs" />
     <Compile Include="model\Path.cs" />

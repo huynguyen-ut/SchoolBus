@@ -6,15 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RouteProblem.routing;
-
-
-using System.IO;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 namespace RouteProblem.heuristic
 {
-     class  Heuristic:Route
+     class  Heuristic
     {
         private int mode;
 
@@ -33,23 +30,27 @@ namespace RouteProblem.heuristic
         private School school;
         private List<Station> stations;
         private List<Bus> buses;
+        private List<Route> routes;
          public Heuristic(School school, List<Station> stations, List<Bus> buses)
         {
             this.school =school;
             this.stations = stations;
             this.buses = buses;
             this.Limittime = 3000;
+            this.routes = new List<Route>();
         }
         public void Run()
         {
             switch(mode){
-                case 1: this.Heuristic1(); break;
-               default: break;
+                case 1: this.Heuristic1();
+                        this.Routing();
+                        break;
+                default: break;
             }
         }
         protected Bus SelectBus() {
             Bus bus = null;
-            foreach (Bus i in this.buses)// Check Bus and select bus
+            foreach(Bus i in this.buses)// Check Bus and select bus
                 if (!i.IsComplete)
                 {
                     bus = i;
@@ -104,8 +105,45 @@ namespace RouteProblem.heuristic
                         else break;
                     }
                     bus.IsComplete = true;
-                   // this.stations.Sort();
-           }
+                    bus.addStation(this.school);
+                   // bus.RunningTime += bus.CurStation.GetDuration(this.school);
+                   // bus.Distance+= bus.CurStation.GetDistance(this.school);
+                // this.stations.Sort();
+            }
+           // this.Routing();
+        }
+        public void Routing() {
+            this.buses.Sort();
+            int dura = 0;
+            Route route= new Route();
+            this.routes.Add(route);
+            bool flag=true;// first route
+            int startTime = 0;
+            foreach (Bus bus in this.buses)
+            if(bus.RunningTime>0){
+                if (flag) {
+                    dura +=bus.RunningTime;
+                    flag = false;
+                    }
+                    else {
+                        startTime = dura+this.school.GetDuration(bus.Path.getFirstStation());
+                        dura += this.school.GetDuration(bus.Path.getFirstStation()) + bus.RunningTime;
+                   }
+                if (dura <= this.LimitTime)
+                {
+                        foreach (Station station in bus.Path.Stations) {
+                            bus.getState(station).RunningTime+=startTime;
+                        }
+                    route.addBus(bus);
+                }
+                else {
+                    dura = 0;
+                    route = new Route();
+                    this.routes.Add(route);
+                    dura += bus.RunningTime;
+                    route.addBus(bus);
+                }
+            }
         }
         public void PrintSolution()
         {
@@ -120,6 +158,7 @@ namespace RouteProblem.heuristic
               Console.WriteLine("School");
 			  }}
         }
+        
         public void PrintFileSolution() {
             String filePath = "../../data/output/solution.xls";
             String sheetName = "route";
@@ -210,12 +249,13 @@ namespace RouteProblem.heuristic
                   header.CreateCell(6).SetCellValue("distance(m)");
 
                   int i = 1;
-                  foreach (Bus b in this.buses)
+                  foreach(Route route in this.routes)
+                  foreach (Bus b in route.Buses)
                   {
                       if (b.Path.Stations.Count != 0)
                       {
                           header = sheet.CreateRow(i++);
-                          header.CreateCell(0).SetCellValue(b.Id);
+                          header.CreateCell(0).SetCellValue(route.Id);
                           header.CreateCell(4).SetCellValue(b.Students.Count);
                           int nP=b.Path.Stations.Count;
                          
@@ -243,17 +283,77 @@ namespace RouteProblem.heuristic
                           }
                           header = sheet.CreateRow(i++);
                         
-                          header.CreateCell(1).SetCellValue(this.school.Lat);
-                          header.CreateCell(2).SetCellValue(this.school.Lon);
-                          header.CreateCell(5).SetCellValue(b.CurStation.GetDuration(this.school) + b.RunningTime);
-                          header.CreateCell(6).SetCellValue(b.CurStation.GetDistance(this.school) + b.Distance);
+                         // header.CreateCell(1).SetCellValue(this.school.Lat);
+                       //   header.CreateCell(2).SetCellValue(this.school.Lon);
+                       //   header.CreateCell(5).SetCellValue(b.getState(this.school).RunningTime);
+                      //    header.CreateCell(6).SetCellValue(b.getState(this.school).Distance);
                           header = sheet.CreateRow(i++);
                           header.CreateCell(0).SetCellValue("*");
                       }
                   }
                   workbook.Write(file);
               }
-            }
+              ////////////////////////////////////////
+              //  sheetName = "summary route";
+              //  sheet = workbook.CreateSheet(sheetName);
+              //  if (sheet != null)
+              //  {
+
+              //      IRow header = sheet.CreateRow(0);
+              //      header.CreateCell(0).SetCellValue("Id");
+              //      header.CreateCell(1).SetCellValue("lat");
+              //      header.CreateCell(2).SetCellValue("lon");
+              //      header.CreateCell(3).SetCellValue("Name of station");
+              //      header.CreateCell(4).SetCellValue("nStudent");
+              //      header.CreateCell(5).SetCellValue("duration(s)");
+              //      header.CreateCell(6).SetCellValue("distance(m)");
+
+              //      int i = 1;
+              //      foreach (Bus b in this.buses)
+              //      {
+              //          if (b.Path.Stations.Count != 0)
+              //          {
+              //              header = sheet.CreateRow(i++);
+              //              header.CreateCell(0).SetCellValue(b.Id);
+              //              header.CreateCell(4).SetCellValue(b.Students.Count);
+              //              int nP = b.Path.Stations.Count;
+
+              //              for (int index = 0; index < nP; index++)
+              //              {
+              //                  header = sheet.CreateRow(i++);
+              //                  header.CreateCell(0).SetCellValue(b.Path.Stations[index].Id);
+              //                  header.CreateCell(1).SetCellValue(b.Path.Stations[index].Lat);
+              //                  header.CreateCell(2).SetCellValue(b.Path.Stations[index].Lon);
+              //                  header.CreateCell(3).SetCellValue(b.Path.Stations[index].Address);
+              //                  header.CreateCell(4).SetCellValue(b.nStudentInStation(b.Path.Stations[index]));
+              //                  header.CreateCell(5).SetCellValue(b.getState(b.Path.Stations[index]).RunningTime);
+              //                  header.CreateCell(6).SetCellValue(b.getState(b.Path.Stations[index]).Distance);
+              //                  int j = 7;
+              //                  if (index < b.Path.Stations.Count - 1)
+              //                      foreach (string dir in b.Path.Stations[index].getDirection(b.Path.Stations[index + 1]))
+              //                      {
+              //                          header.CreateCell(j++).SetCellValue(dir);
+              //                      }
+              //                  else
+              //                      foreach (string dir in b.Path.Stations[index].getDirection(this.school))
+              //                      {
+              //                          header.CreateCell(j++).SetCellValue(dir);
+              //                      }
+
+              //              }
+              //              header = sheet.CreateRow(i++);
+
+              //              header.CreateCell(1).SetCellValue(this.school.Lat);
+              //              header.CreateCell(2).SetCellValue(this.school.Lon);
+              //              header.CreateCell(5).SetCellValue(b.CurStation.GetDuration(this.school) + b.RunningTime);
+              //              header.CreateCell(6).SetCellValue(b.CurStation.GetDistance(this.school) + b.Distance);
+              //              header = sheet.CreateRow(i++);
+              //              header.CreateCell(0).SetCellValue("*");
+              //          }
+              //      }
+              //      workbook.Write(file);
+              //    } 
+                }
 
             file.Close();
         }
