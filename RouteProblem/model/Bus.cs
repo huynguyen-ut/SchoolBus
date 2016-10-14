@@ -12,9 +12,17 @@ namespace RouteProblem.model
         private int id;
         public int Id
         {
-            get { return id; }
-            
+            get
+            {
+                return id;
+            }
+
+            set
+            {
+                id = value;
+            }
         }
+        int orderBus;
         private List<StateBus> states;
 
         internal List<StateBus> States
@@ -77,10 +85,23 @@ namespace RouteProblem.model
             get { return path; }
             
         }
-        
+
+        public int OrderBus
+        {
+            get
+            {
+                return orderBus;
+            }
+
+            set
+            {
+                orderBus = value;
+            }
+        }
+
         public Bus(int id,int capacity) {
 
-            this.id = id;
+            this.Id = id;
             this.capacity = capacity;
             this.path = new RouteProblem.Path(id);
             this.isComplete = false;
@@ -100,36 +121,38 @@ namespace RouteProblem.model
         }
         public void addStation(Station station){
 
-
+            StateBus state;
             if (this.path.Stations.Count != 0)
             {
                 this.runningTime += this.curStation.GetDuration(station) + this.curStation.Stoptime;
                 this.distance += this.curStation.GetDistance(station);
-                StateBus state = new StateBus(station.Id);
+                 state = new StateBus(station.Id);
                 state.RunningTime = this.runningTime;
                 state.Distance = this.distance;
                 this.states.Add(state);
             }
             else
             {
-                StateBus state = new StateBus(station.Id);
+                state = new StateBus(station.Id);
                 state.RunningTime = this.runningTime;
                 state.Distance = this.distance;
                 this.states.Add(state);
             }
             this.curStation = station;
-            this.path.addStation(station,this.runningTime,this.distance);
+            this.path.addStation(station);
           
             int nsit=this.getNumberSit() ;
             int nstudent=station.Students.Count;
+            if(station.Id!=0)
             if (nsit > nstudent)
             {
                 for (int i = 0; i < nstudent; i++)
                 {
                     this.students.Add(station.Students[0]);
-                   station.Students[0].Bus = this;
+                    station.Students[0].Bus = this;
                     station.Students.RemoveAt(0);
                 }
+                state.StdentUP = nstudent;
             }
             else {
                 for (int i = 0; i < nsit; i++)
@@ -138,6 +161,7 @@ namespace RouteProblem.model
                     station.Students[0].Bus = this;
                     station.Students.RemoveAt(0);
                 }
+                state.StdentUP = nsit;
             }
            
    

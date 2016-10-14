@@ -1,42 +1,19 @@
-﻿0	10.885213	106.651882		Trường Kim Đồng	
-1	10.8350974	106.676318	1	Công Ty Cp Thang Máy Việt Nhật	192 Nguyễn Oanh, 17
-2	10.861292	106.675872	1	Công ty TNHH sản xuất Thiên Trung	Asian Highway 1, An Phú Đông, 777A,Thạnh Xuân,Quận 12
-3	10.866797	106.6261831	1	Tân Chánh Hiệp	Tân Chánh Hiệp
-4	10.8614614	106.6629516	1	Công Ty Cp Cơ Khsi & Xây Lắp Công Nghiệp (Imeco)	929 Đường Quốc lộ 1A, Thới An, 12
-5	10.8385431	106.6297173	1	Công ty TNHH Tự Động Thế Thiện	B149, Khu Phố 3,, Nguyễn Văn Quá, Phường Đông Hưng Thuận, Quận 12, Tp Hồ Chí Minh
-6	10.8445104	106.6617267	1	Saigon Minsk Cafe	Số 8, phường 11, Hồ Chí Minh
-7	10.868123	106.719383	1	Công Ty TNHH Thương Mại Dịch Vụ Âu Châu (EURO Pest Control)	930 Quốc lộ 13, Hiệp Bình Phước
-8	10.8626	106.719724	1	Công Ty TNHH TM DV Phúc Tiến Hoan	13 Đường Quốc lộ 1A, Linh Trung
-9	10.8596632	106.7125228	1	Cơ Sở Inox Ô Tô Cường Phát	Đường Quốc lộ 1A, An Phú Đông, 12
-10	10.785512	106.646508	1	Công ty TNHH Du Lịch Saco	54 Đặng Minh Trứ
-11	10.8564464	106.639614	1	Thời Trang Hoa My Nguyễn Văn Quá	1913, Nguyễn Văn Quá, Tân Thới Hiệp
-12	10.8525385	106.6262491	1	Khách Sạn Hường Thu	Tô Ký, Trung Mỹ Tây, 12
-13	10.867145	106.641411	1	Rau câu 3D Gelli	232 Nguyễn Thị Đặng, Phường Tân Thới Hiệp, Quận 12
-14	10.8230989	106.6296638	1	Ho Chi Minh City	Ho Chi Minh City
-15	10.8603672	106.6438673	2	Creative JSC	Lô A10, Khu Công Nghiệp Tân Thới Hiệp, Quận 12, Tp Hồ Chí Minh
-16	10.8797522	106.6434556	1	Hoa Ca Thanh Xuan Crocodile	218, Đường Hiệp Thành 17, Phường Hiệp Thành, Quận 12, Hồ Chí Minh
-17	10.9703995	106.6157029	2	Xưởng Gỗ AHP	3, Liên Ấp, Bình Mỹ
-18	10.9054952	106.638709	2	Cửa Hàng Máy Tính Việt	200 Đặng Thúc Vịnh, Đông Thạnh
-19	10.8781188	106.6390588	2	Nhà văn hóa lao động quận 12	17 Nguyễn Ảnh Thủ, Hiệp Thành, Hồ Chí Minh
-20	10.865416	106.683303	2	Sakatashop	Thạnh Lộc 26, Thạnh Lộc, Hồ Chí Minh
-21	10.8418818	106.6764805	1	Công Ty Cp Quạt Việt Nam	293 Nguyễn Oanh, 17
-22	10.8578469	106.6272519	1	Cửa Hàng Rmobile	141, Đông Bắc, Phường Tân Chánh Hiệp, Quận 12, Hồ Chí Minh
-23	10.8712302	106.6859815	1	Công ty cổ phần công nghệ xây dựng Kiên Long	67A TL30, Phường thạnh lộc
-24	10.84602	106.6376023	1	Công ty TNHH Thương mại Điện Tử 3A	68 Quang Trung, 14, Gò Vấp
-25	10.9045959	106.6523327	4	Shop Ấp 4	Ấp 4, Tân Thạnh Đông, Hồ Chí Minh
-26	10.882885	106.6536132	7	Công Ty Tnhh Mtv Livico	251 Lê Thị Riêng, Thới An, 12
-27	10.8626951	106.6549566	10	Công Ty Tnhh Tm Nam Hải	2 Lê Thị Riêng, Thới An, 12
-28	10.8677812	106.6545303	5	Công Ty Tnhh Tm - Dv May Mặc Vinh Thịnh	156 Lê Thị Riêng, Thới An, 12
-29	10.864377	106.614616	9	Công Ty TNHH TMDV & TV CNTT Phạm Nguyễn	27A khu phố 1, đường trung mỹ tây 19, phường trung mỹ tây , Quận 12, Hồ Chí Minh
-30	10.8399183	106.6476881	3	Công Ty Tnhh Sản Xuất Tmdv Chí Nam	15 Quang Trung, 8
-31	10.8571431	106.6157633	13	Công Ty Tnhh Tm Sx Lắp Đặt Đại Phát	218 Hà Đặc, Trung Mỹ Tây, 12
-32	10.8478265	106.612224	14	Cửa Hàng Thạch Cao Tùng Lâm Thịnh	32 Quốc lộ 22, Trung Mỹ Tây, 12
-33	10.8726779	106.6515337	21	Công ty TNHH Cơ khí, Xây dựng Phú Gia Bảo	Thới An 22, Thới An, Hồ Chí Minh
-34	10.8886863	106.6472965	22	CTY TNHH SX&TM MAY KINH BẮC	618 Lê Văn Khương, Thới An, 12
-35	10.865059	106.649772	4	Siêu thị Điện máy Xanh	Số 102 Lê Văn Khương, Khu Phố 1, Thới An, Quận 12
-36	10.9083203	106.6449903	5	ATM Sacombank - Công Ty TNHH Dae Woong	Ấp 12, Đường Đặng Thúc Vịnh, Xã Đông Thạnh, Huyện Hóc Môn, Hồ Chí Minh
-37	10.8811456	106.6371629	4	Century Software And Media Joint Stock Company	69L, Khu Phố 3, Phường Hiệp Thành, Quận 12, Hồ Chí Minh
-38	10.8823652	106.6672897	2	Bệnh Viện đa khoa tinh binh duong	đường TX25, Thạnh Xuân, Hồ Chí Minh
-39	10.8788698	106.6514049	125	Thang Long Refrigeration Technology Joint Stock Company	178A, Khu Phố 6, Đường Thới An 32, Phường Thới An, Quận 12, Hồ Chí Minh
-40	10.8760697	106.6556575	78	Công ty TNHH MTV TM & DV Kamera	16 đường TA 06, phường Thới An
-41	10.9076858	106.687755	1	Công Ty TNHH Sản Xuất Thương Mại Nhựa Tín Thành	Bùi Công Trừng, Ấp 3 xã, Nhị Bình, Hồ Chí Minh
+﻿0	10.865085	106.6575683	0	"	Trường Kim Đồng
+1	10.8764167	106.654805	78	"	Đầu hẻm đường Lê Thị Riêng, Đường TA 19 - Nguyễn Thị Kiểu, Khu phố 2, Tổ 7
+2	10.8717383	106.6546517	3	"	Đầu hẻm đường 58A Lê Thị Riêng, Đường TA 28, Khu phố 4, Hẻm nhỏ đông học sinh -  Công ty Khang Thịnh Phát
+3	10.8781667	106.6510967	97	"	Đầu hẻm đường Trần Thị Cờ, Hẻm 164
+4	10.8739583	106.6509817	10	"	Đầu hẻm đường Trần Thị Cờ, Đường TA 20
+5	10.87987	106.6509117	4	"	Đầu hẻm đường 175B Trần Thị Cờ, Bên hông café PaPa
+6	10.8727917	106.6503867	9	"	Đầu hẻm đường Trần Thị Cờ
+7	10.88071	106.65096	3	"	Đầu hẻm đường Trần Thị Cờ, Khu phố 6
+8	10.8824217	106.6523883	6	"	Hẻm 890 trong hẻm đường TA 13, Đường TA 13, Khu phố 3
+9	10.868775	106.6545367	3	"	Đầu hẻm đường Lê Thị Riêng, Đường TA 28, Khu phố 4, Trường Lái Xe
+10	10.88175	106.6508233	5	"	Đầu hẻm đường Trần Thị Cờ, Đường TA 13
+11	10.8816083	106.6487483	7	"	Đầu hẻm đường Lê Văn Khương, Đường TA 13
+12	10.8821283	106.6486417	8	"	Đầu hẻm đường 61/4A Lê Văn Khương, Khu phố 5
+13	10.8667183	106.654565	6	"	Đầu hẻm đường Lê Thị Riêng, Đường TA 28, Khu phố 4
+14	10.8847133	106.6481667	8	"	Đầu hẻm đường Lê Văn Khương, Đường TA 09 - Võ Thị Phải
+15	10.8651683	106.649535	5	"	Đầu hẻm đường Lê Văn Khương, Đường TA 03, Bên phía nhà máy bia Tiger
+16	10.8884267	106.6521733	7	"	Đầu hẻm đường 699 Lê Thị Riêng, Khu phố 7, Tổ 9
+17	10.861635	106.6575017	6	"	Đầu đường QL. 1A
+18	10.8920967	106.647105	7	"	Đầu hẻm đường 702 Lê Văn Khương, Khu phố 7, Cuối đường Lê Văn Khương

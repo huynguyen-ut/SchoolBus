@@ -42,8 +42,9 @@ namespace RouteProblem.heuristic
         public void Run()
         {
             switch(mode){
-                case 1: this.Heuristic1();
+                case 1: this.Solve();
                         this.Routing();
+                        this.PostProcessing();
                         break;
                 default: break;
             }
@@ -68,7 +69,7 @@ namespace RouteProblem.heuristic
                 }
             return station;
         }
-        public void Heuristic1() {
+        public void Solve() {
             this.stations.Sort();
             Bus bus=null;
             Station station=null;
@@ -113,12 +114,34 @@ namespace RouteProblem.heuristic
            // this.Routing();
         }
         public void Routing() {
+            bool flag = false;
+            int id=0;
+            foreach (Bus bus in this.buses)
+            if(bus.RunningTime>0){
+                flag = false;
+                if (this.routes.Count>0)
+                foreach (Route route in this.routes) {
+                    if (route.isBelongToRoute(bus.Path))
+                    {   route.addBus(bus);
+                        flag = true;
+                        break;
+                    }
+                }
+                if (flag == false) {
+                    id++;
+                    Route r = new Route(id,bus.Path);
+                    this.routes.Add(r);
+                    r.addBus(bus);
+                   
+                }
+            }
+        }
+        public void PostProcessing() {
             this.buses.Sort();
             int dura = 0;
-            Route route= new Route();
-            this.routes.Add(route);
             bool flag=true;// first route
             int startTime = 0;
+            int orderBus=1;
             foreach (Bus bus in this.buses)
             if(bus.RunningTime>0){
                 if (flag) {
@@ -134,24 +157,23 @@ namespace RouteProblem.heuristic
                         foreach (Station station in bus.Path.Stations) {
                             bus.getState(station).RunningTime+=startTime;
                         }
-                    route.addBus(bus);
+                        bus.OrderBus= orderBus;
                 }
                 else {
-                    dura = 0;
-                    route = new Route();
-                    this.routes.Add(route);
-                    dura += bus.RunningTime;
-                    route.addBus(bus);
-                }
+                        dura = 0;
+                        startTime = 0;
+                        bus.OrderBus= ++orderBus;
+                        dura += bus.RunningTime;
+                    }
             }
         }
         public void PrintSolution()
         {
-            foreach(Bus b in this.buses){
-			  if(b.Path.Stations.Count!=0)
-			  {Console.Write(b.Id+":");
+            foreach(Route route in this.routes){
+			  if(route.Path.Stations.Count!=0)
+			  {Console.Write(route.Id+":");
 
-			  foreach(Station s in b.Path.Stations){
+			  foreach(Station s in route.Path.Stations){
 				  Console.Write(s.Id+"->");
 				  
 			    }
@@ -161,7 +183,7 @@ namespace RouteProblem.heuristic
         
         public void PrintFileSolution() {
             String filePath = "../../data/output/solution.xls";
-            String sheetName = "route";
+            String sheetName ;
             String fileExt = System.IO.Path.GetExtension(filePath);
             Stream file = new FileStream(filePath, FileMode.OpenOrCreate);
             IWorkbook workbook = null;
@@ -169,41 +191,8 @@ namespace RouteProblem.heuristic
             else if (fileExt == ".xlsx") workbook = new XSSFWorkbook();
             if (workbook != null)
             {
-                ISheet sheet = workbook.CreateSheet(sheetName);
-                if (sheet != null)
-                {
-                    
-                    IRow header = sheet.CreateRow(0);
-                    header.CreateCell(0).SetCellValue("Id");
-                    header.CreateCell(1).SetCellValue("lat");
-                    header.CreateCell(2).SetCellValue("lon");
-                    header.CreateCell(3).SetCellValue("nStudent");
-                    int i = 1;
-                    foreach (Bus b in this.buses)
-                    {
-                        if (b.Path.Stations.Count != 0)
-                        {
-                          foreach (Station s in b.Path.Stations)
-                            {
-                                header = sheet.CreateRow(i++);
-                                header.CreateCell(0).SetCellValue(b.Id);
-                                header.CreateCell(1).SetCellValue(s.Lat);
-                                header.CreateCell(2).SetCellValue(s.Lon);
-                                header.CreateCell(3).SetCellValue(b.nStudentInStation(s));
-
-                            }
-                          header = sheet.CreateRow(i++);
-                          header.CreateCell(0).SetCellValue(b.Id);
-                          header.CreateCell(1).SetCellValue(this.school.Lat);
-                          header.CreateCell(2).SetCellValue(this.school.Lon);
-                        
-                          header = sheet.CreateRow(i++);
-                          header.CreateCell(0).SetCellValue("*");
-                        }
-                    }
-                   
-                }
-                sheetName = "students";
+                ISheet sheet ;
+                sheetName = "students_route";
                 sheet = workbook.CreateSheet(sheetName);
                 if (sheet != null)
                 {
@@ -213,11 +202,15 @@ namespace RouteProblem.heuristic
                     header.CreateCell(1).SetCellValue("lat");
                     header.CreateCell(2).SetCellValue("lon");
                     header.CreateCell(3).SetCellValue("IdStattion");
-                    header.CreateCell(4).SetCellValue("Name");
+                    header.CreateCell(4).SetCellValue("Name of Staion");
                     header.CreateCell(5).SetCellValue("Address");
-                    header.CreateCell(6).SetCellValue("IdBus");
-                     int i = 1;
-                     foreach (Student student in this.school.Students)
+                    header.CreateCell(6).SetCellValue("IdRoute");
+                    header.CreateCell(7).SetCellValue("IdBus");
+                    header.CreateCell(8).SetCellValue("Arrival Time");
+                    int i = 1;
+                    foreach(Route route in this.routes)
+                        foreach(Bus bus in route.Buses)
+                     foreach (Student student in bus.Students)
                      {
                          header = sheet.CreateRow(i++);
                          header.CreateCell(0).SetCellValue(student.Id);
@@ -226,134 +219,154 @@ namespace RouteProblem.heuristic
                          header.CreateCell(3).SetCellValue(student.Station.Id);
                          header.CreateCell(4).SetCellValue(student.Station.Name);
                          header.CreateCell(5).SetCellValue(student.Station.Address);
-                         header.CreateCell(6).SetCellValue(student.Bus.Id);
-                        
-                     }
+                         header.CreateCell(6).SetCellValue(route.Id);
+                         header.CreateCell(7).SetCellValue(bus.OrderBus);
+                         header.CreateCell(8).SetCellValue("6h"+bus.getState(student.Station).RunningTime/60);
+
+                            }
 
                 }
-              
 
-                //////////////////////////////////////////////////////////
-              sheetName = "summary";
+                sheetName = "route";
+                sheet = workbook.CreateSheet(sheetName);
+                if (sheet != null)
+                {
+                    IRow header = sheet.CreateRow(0);
+                    header.CreateCell(0).SetCellValue("IdRoute");
+                    header.CreateCell(1).SetCellValue("lat");
+                    header.CreateCell(2).SetCellValue("lon");
+                    header.CreateCell(3).SetCellValue("IdStattion");
+                   // header.CreateCell(4).SetCellValue("Name");
+                  //  header.CreateCell(5).SetCellValue("Address");
+                    int i=0;
+                    int j = 1;
+                 
+                    foreach (Route route in this.routes)
+                    {
+                        if(route.Buses.Count>0)
+                        for(int index=0; index <route.Path.Stations.Count; index++)
+                        {
+                            header = sheet.CreateRow(j++);
+                            header.CreateCell(0).SetCellValue(route.Id);
+                            header.CreateCell(1).SetCellValue(route.Path.Stations[index].Lat);
+                            header.CreateCell(2).SetCellValue(route.Path.Stations[index].Lon);
+                            header.CreateCell(3).SetCellValue(route.Path.Stations[index].Id);
+                            header.CreateCell(4).SetCellValue(route.Path.Stations[index].NStudent);
+                            i = 5;
+                            if(index< route.Path.Stations.Count-1)
+                            foreach(GoogleMapsApi.Entities.Common.Location location in route.Path.Stations[index].getPolyline(route.Path.Stations[index+1]))
+                            header.CreateCell(i++).SetCellValue(location.Latitude.ToString()+";"+location.Longitude.ToString());
+                           
+                            // header.CreateCell(i++).SetCellValue(route.Path.Stations[index].Name);
+                           // header.CreateCell(i++).SetCellValue(route.Path.Stations[index].Address);
+                        }
+                        header = sheet.CreateRow(j++);
+                        header.CreateCell(0).SetCellValue("*");
+                    }
+                        
+
+                }
+                    //////////////////////////////////////////////////////////
+                    sheetName = "summary_route";
               sheet = workbook.CreateSheet(sheetName);
               if (sheet != null)
               {
 
                   IRow header = sheet.CreateRow(0);
-                  header.CreateCell(0).SetCellValue("Id");
-                  header.CreateCell(1).SetCellValue("lat");
-                  header.CreateCell(2).SetCellValue("lon");
-                  header.CreateCell(3).SetCellValue("Name of station");
-                  header.CreateCell(4).SetCellValue("nStudent");
-                  header.CreateCell(5).SetCellValue("duration(s)");
-                  header.CreateCell(6).SetCellValue("distance(m)");
-
                   int i = 1;
                   foreach(Route route in this.routes)
-                  foreach (Bus b in route.Buses)
-                  {
-                      if (b.Path.Stations.Count != 0)
-                      {
-                          header = sheet.CreateRow(i++);
-                          header.CreateCell(0).SetCellValue(route.Id);
-                          header.CreateCell(4).SetCellValue(b.Students.Count);
-                          int nP=b.Path.Stations.Count;
-                         
-                          for (int index=0;index<nP;index++)
-                          {   
-                              header = sheet.CreateRow(i++);
-                              header.CreateCell(0).SetCellValue(b.Path.Stations[index].Id);
-                              header.CreateCell(1).SetCellValue(b.Path.Stations[index].Lat);
-                              header.CreateCell(2).SetCellValue(b.Path.Stations[index].Lon);
-                              header.CreateCell(3).SetCellValue(b.Path.Stations[index].Address);
-                              header.CreateCell(4).SetCellValue(b.nStudentInStation(b.Path.Stations[index]));
-                              header.CreateCell(5).SetCellValue( b.getState(b.Path.Stations[index]).RunningTime);
-                              header.CreateCell(6).SetCellValue(b.getState(b.Path.Stations[index]).Distance);
-                              int j=7;
-                              if(index<b.Path.Stations.Count-1)
-                              foreach (string dir in b.Path.Stations[index].getDirection(b.Path.Stations[index+1]))
-                              {
-                                  header.CreateCell(j++).SetCellValue(dir);
-                              }else
-                                  foreach (string dir in b.Path.Stations[index].getDirection(this.school))
-                                  {
-                                      header.CreateCell(j++).SetCellValue(dir);
-                                  }
+                    {
+                        header = sheet.CreateRow(i++);
+                        header.CreateCell(0).SetCellValue("Route: "+ route.Id);
+                        foreach (Bus b in route.Buses)
+                        {
+                            if (b.Path.Stations.Count != 0)
+                            {
+                                header = sheet.CreateRow(i++);
+                                header.CreateCell(0).SetCellValue("Bus:"+b.OrderBus);
+                                int nP = b.Path.Stations.Count;
+                             
+                                for (int index = 0; index < nP; index++)
+                                {
+                                   header.CreateCell(index+1).SetCellValue("Station:"+b.Path.Stations[index].Id);
+                                                  
 
-                          }
-                          header = sheet.CreateRow(i++);
-                        
-                         // header.CreateCell(1).SetCellValue(this.school.Lat);
-                       //   header.CreateCell(2).SetCellValue(this.school.Lon);
-                       //   header.CreateCell(5).SetCellValue(b.getState(this.school).RunningTime);
-                      //    header.CreateCell(6).SetCellValue(b.getState(this.school).Distance);
-                          header = sheet.CreateRow(i++);
-                          header.CreateCell(0).SetCellValue("*");
-                      }
+                                }
+                                header = sheet.CreateRow(i++);
+                                header.CreateCell(0).SetCellValue("Arrival time:");
+                                for (int index = 0; index < nP; index++)
+                                {
+                                    header.CreateCell(index + 1).SetCellValue(b.getState(b.Path.Stations[index]).RunningTime);
+
+
+                                }
+                                header = sheet.CreateRow(i++);
+                                header.CreateCell(0).SetCellValue("Student in station:" );
+                                for (int index = 0; index < nP; index++)
+                                {
+                                    header.CreateCell(index + 1).SetCellValue(b.getState(b.Path.Stations[index]).StdentUP);
+                                }
+
+                                
+                            }
+                            header = sheet.CreateRow(i++);
+                            header.CreateCell(0).SetCellValue("*");
+                        }
+                 
                   }
-                  workbook.Write(file);
+                  
               }
-              ////////////////////////////////////////
-              //  sheetName = "summary route";
-              //  sheet = workbook.CreateSheet(sheetName);
-              //  if (sheet != null)
-              //  {
+                //////////////////////////////////////
+                sheetName = "summary_total";
+                sheet = workbook.CreateSheet(sheetName);
+                if (sheet != null)
+                {
 
-              //      IRow header = sheet.CreateRow(0);
-              //      header.CreateCell(0).SetCellValue("Id");
-              //      header.CreateCell(1).SetCellValue("lat");
-              //      header.CreateCell(2).SetCellValue("lon");
-              //      header.CreateCell(3).SetCellValue("Name of station");
-              //      header.CreateCell(4).SetCellValue("nStudent");
-              //      header.CreateCell(5).SetCellValue("duration(s)");
-              //      header.CreateCell(6).SetCellValue("distance(m)");
+                    IRow header = sheet.CreateRow(0);
+                    header.CreateCell(0).SetCellValue("IdStation");
+                    header.CreateCell(1).SetCellValue("lat");
+                    header.CreateCell(2).SetCellValue("lon");
+                    header.CreateCell(3).SetCellValue("Name of station");
 
-              //      int i = 1;
-              //      foreach (Bus b in this.buses)
-              //      {
-              //          if (b.Path.Stations.Count != 0)
-              //          {
-              //              header = sheet.CreateRow(i++);
-              //              header.CreateCell(0).SetCellValue(b.Id);
-              //              header.CreateCell(4).SetCellValue(b.Students.Count);
-              //              int nP = b.Path.Stations.Count;
+                    int i = 1;
+                    foreach (Route route in this.routes)
+                    {
+                        if (route.Path.Stations.Count != 0)
+                        {
+                            header = sheet.CreateRow(i++);
+                            header.CreateCell(0).SetCellValue(route.Id);
+                            int nP = route.Path.Stations.Count;
 
-              //              for (int index = 0; index < nP; index++)
-              //              {
-              //                  header = sheet.CreateRow(i++);
-              //                  header.CreateCell(0).SetCellValue(b.Path.Stations[index].Id);
-              //                  header.CreateCell(1).SetCellValue(b.Path.Stations[index].Lat);
-              //                  header.CreateCell(2).SetCellValue(b.Path.Stations[index].Lon);
-              //                  header.CreateCell(3).SetCellValue(b.Path.Stations[index].Address);
-              //                  header.CreateCell(4).SetCellValue(b.nStudentInStation(b.Path.Stations[index]));
-              //                  header.CreateCell(5).SetCellValue(b.getState(b.Path.Stations[index]).RunningTime);
-              //                  header.CreateCell(6).SetCellValue(b.getState(b.Path.Stations[index]).Distance);
-              //                  int j = 7;
-              //                  if (index < b.Path.Stations.Count - 1)
-              //                      foreach (string dir in b.Path.Stations[index].getDirection(b.Path.Stations[index + 1]))
-              //                      {
-              //                          header.CreateCell(j++).SetCellValue(dir);
-              //                      }
-              //                  else
-              //                      foreach (string dir in b.Path.Stations[index].getDirection(this.school))
-              //                      {
-              //                          header.CreateCell(j++).SetCellValue(dir);
-              //                      }
+                            for (int index = 0; index < nP; index++)
+                            {
+                                header = sheet.CreateRow(i++);
+                                header.CreateCell(0).SetCellValue(route.Path.Stations[index].Id);
+                                header.CreateCell(1).SetCellValue(route.Path.Stations[index].Lat);
+                                header.CreateCell(2).SetCellValue(route.Path.Stations[index].Lon);
+                                header.CreateCell(3).SetCellValue(route.Path.Stations[index].Address);
+                               
+                                int j = 7;
+                                if (index < route.Path.Stations.Count - 1)
+                                    foreach (string dir in route.Path.Stations[index].getDirection(route.Path.Stations[index + 1]))
+                                    {
+                                        header.CreateCell(j++).SetCellValue(dir);
+                                    }
+                                else
+                                    foreach (string dir in route.Path.Stations[index].getDirection(this.school))
+                                    {
+                                        header.CreateCell(j++).SetCellValue(dir);
+                                    }
 
-              //              }
-              //              header = sheet.CreateRow(i++);
-
-              //              header.CreateCell(1).SetCellValue(this.school.Lat);
-              //              header.CreateCell(2).SetCellValue(this.school.Lon);
-              //              header.CreateCell(5).SetCellValue(b.CurStation.GetDuration(this.school) + b.RunningTime);
-              //              header.CreateCell(6).SetCellValue(b.CurStation.GetDistance(this.school) + b.Distance);
-              //              header = sheet.CreateRow(i++);
-              //              header.CreateCell(0).SetCellValue("*");
-              //          }
-              //      }
-              //      workbook.Write(file);
-              //    } 
+                            }
+                                                    
+                            header = sheet.CreateRow(i++);
+                            header.CreateCell(0).SetCellValue("*");
+                        }
+                    }
+                   
                 }
+                workbook.Write(file);
+            }
 
             file.Close();
         }

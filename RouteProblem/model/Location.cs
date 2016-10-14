@@ -56,8 +56,8 @@ public string Address
              get { return durationToX; }
              set { durationToX = value; }
          }
-         public Location(int id,string address,double lat,double lon) {
-             this.id = id;
+         public Location(int id, string address,double lat,double lon) {
+             this.id=id;
              this.lat = lat;
              this.lon = lon;
              this.distanceToX = new List<int>();
@@ -94,7 +94,28 @@ public string Address
              }
              return steps;
          }
-         public string getAdress() {
+        public List<GoogleMapsApi.Entities.Common.Location> getPolyline(Location L)
+        {
+          
+            List<GoogleMapsApi.Entities.Common.Location> steps = new List<GoogleMapsApi.Entities.Common.Location>();
+            DirectionsRequest directionsRequest = new DirectionsRequest()
+            {
+                Origin = this.lat + "," + this.lon,
+                Destination = L.lat + "," + L.lon
+            };
+            directionsRequest.ApiKey = this.API_KEY;
+            DirectionsResponse directionsResponse = GoogleMapsApi.GoogleMaps.Directions.Query(directionsRequest);
+            GoogleMapsApi.Entities.Directions.Response.Leg leg = directionsResponse.Routes.ElementAt(0).Legs.ElementAt(0);
+            foreach (var step in leg.Steps)
+            {
+                foreach (GoogleMapsApi.Entities.Common.Location point in step.PolyLine.Points)
+                {
+                    steps.Add(point);
+                }
+            }
+            return steps;
+        }
+        public string getAdress() {
              PlacesRequest place = new PlacesRequest()
              {
                  Location=new GoogleMapsApi.Entities.Common.Location(this.lat,this.lon),

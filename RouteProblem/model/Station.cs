@@ -10,7 +10,7 @@ namespace RouteProblem.model
     {
 
         private int stoptime;
-
+        private int nStudent;
         public int Stoptime
         {
             get { return stoptime; }
@@ -37,7 +37,20 @@ namespace RouteProblem.model
             get { return name; }
             set { name = value; }
         }
-       
+
+        public int NStudent
+        {
+            get
+            {
+                return nStudent;
+            }
+
+            set
+            {
+                nStudent = value;
+            }
+        }
+
         public bool isEmpty() { 
             return this.students.Count==0?true:false;
         }
@@ -46,9 +59,11 @@ namespace RouteProblem.model
             this.states = new List<StateStation>();
             this.Stoptime = 30;
             this.name = name;
+            this.nStudent = 0;
         }
         public void addStudent(Student student) {
             this.students.Add(student);
+            this.nStudent++;
         }
         public void addState(StateStation state) {
             this.states.Add(state);

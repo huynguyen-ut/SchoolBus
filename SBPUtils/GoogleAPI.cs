@@ -99,6 +99,7 @@ namespace SBPUtils
         }
         public static async Task<String> GetDistanceDuration(String lat1, String lng1, String lat2, String lng2)
         {
+            String API_KEY = "AIzaSyCI23HUoG4zqAvSwheflDAXaoYDX0cB96c";
             String returnValue = null;
             WebClient client = new WebClient();
             client.Headers["Accept"] = "application/json";
@@ -124,7 +125,7 @@ namespace SBPUtils
                     }
                 }
             };
-            String uri = String.Format("http://maps.googleapis.com/maps/api/distancematrix/json?origins={0},{1}&destinations={2},{3}", lat1, lng1, lat2, lng2);
+            String uri = String.Format("https://maps.googleapis.com/maps/api/distancematrix/json?origins={0},{1}&destinations={2},{3}&key={4}", lat1, lng1, lat2, lng2, API_KEY);
             await client.DownloadStringTaskAsync(new Uri(uri));
             return returnValue;
         }

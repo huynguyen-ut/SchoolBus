@@ -26,6 +26,7 @@ namespace GetDistance
                 SaveExcel(stations, distance, duration);
                 Console.WriteLine("OK BABY !!!");
             }).Wait();
+            //List<Station> stations = ReadExcel();
         }
 
         static List<Station> ReadExcel()
@@ -51,9 +52,10 @@ namespace GetDistance
                         if (row != null) //null is when the row only contains empty cells 
                         {
                             Station station = new Station();
-                            station.ID = int.Parse(row.GetCell(0).ToString().Trim());
-                            station.Latitude = double.Parse(row.GetCell(1).ToString().Trim());
-                            station.Longitude = double.Parse(row.GetCell(2).ToString().Trim());
+                            station.ID = (int)(row.GetCell(0).NumericCellValue);
+                            station.Latitude = row.GetCell(1).NumericCellValue;
+                            station.Longitude = row.GetCell(2).NumericCellValue;
+                            Console.WriteLine(station.ID + "-" + station.Latitude + "-" + station.Longitude);
                             stations.Add(station);
                         }
                     }
@@ -120,11 +122,18 @@ namespace GetDistance
                         Station stationI = stations[i];
                         Station stationJ = stations[j];
                         String result = await GoogleAPI.GetDistanceDuration(stationI.Latitude.ToString(), stationI.Longitude.ToString(), stationJ.Latitude.ToString(), stationJ.Longitude.ToString());
-                        String[] items = result.Split('\n');
-                        distance[i, j] = int.Parse(items[0]);
-                        duration[i, j] = int.Parse(items[1]);
-                        distance[j, i] = distance[i, j];
-                        duration[j, i] = duration[i, j];
+                        if (result != null)
+                        {
+                            String[] items = result.Split('\n');
+                            distance[i, j] = int.Parse(items[0]);
+                            duration[i, j] = int.Parse(items[1]);
+                            distance[j, i] = distance[i, j];
+                            duration[j, i] = duration[i, j];
+                        }
+                        else
+                        {
+                            Console.WriteLine("BI NULL: " + stationI.ID + "-" + stationJ.ID);
+                        }
                     }
                 }
             }

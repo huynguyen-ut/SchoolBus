@@ -38,11 +38,9 @@ namespace RouteProblem
             }          
         }
 
-        public void addStation(Station s,int duration,int distance)
+        public void addStation(Station s)
         {
             this.stations.Add(s);
-            this.duration = duration;
-            this.distance = distance;
         }
         public Path(int id) {
             this.id = id;
@@ -53,6 +51,19 @@ namespace RouteProblem
         }
         public Station getLastStation() {
             return this.stations[this.stations.Count - 1];
+        }
+        public int NumberStation() {
+            return this.stations.Count;
+        }
+        public bool CheckIdentity(Path path) {
+            if (this.stations.Count!= path.NumberStation())
+                return false;
+            else { 
+                for (int i = 0; i < this.NumberStation(); i++)
+                    if (this.Stations[i].Id != path.stations[i].Id)
+                        return false;
+                 }
+           return true;
         }
       }
 }

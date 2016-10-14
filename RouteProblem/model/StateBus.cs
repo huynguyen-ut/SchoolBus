@@ -15,7 +15,7 @@ namespace RouteProblem.model
             get { return id; }
             set { id = value; }
         }
-               
+        private int stdentUP;      
         private List<Student> students;
         internal List<Student> Students
         {
@@ -35,7 +35,20 @@ namespace RouteProblem.model
             get { return distance; }
             set { distance = value; }
         }
-        
+
+        public int StdentUP
+        {
+            get
+            {
+                return stdentUP;
+            }
+
+            set
+            {
+                stdentUP = value;
+            }
+        }
+
         public StateBus(int id) {
             this.id = id;
             this.students = new List<Student>();
