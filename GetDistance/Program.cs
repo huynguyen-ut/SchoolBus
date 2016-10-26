@@ -55,6 +55,7 @@ namespace GetDistance
                             station.ID = (int)(row.GetCell(0).NumericCellValue);
                             station.Latitude = row.GetCell(1).NumericCellValue;
                             station.Longitude = row.GetCell(2).NumericCellValue;
+                            station.NStudent = (int)(row.GetCell(3).NumericCellValue);
                             Console.WriteLine(station.ID + "-" + station.Latitude + "-" + station.Longitude);
                             stations.Add(station);
                         }
@@ -107,7 +108,28 @@ namespace GetDistance
 
         static async Task<int> GetDistanceDuration(List<Station> stations, int[,] distance, int[,] duration)
         {
+            String[] key = {   //"AIzaSyBfzSI0fxi2LfMLS2gBHuT0Uj3PNtg6kpY",
+                             // "AIzaSyCMixsUHVQxCI1lRjeuYlnw44rguIIVu78",
+                             // "AIzaSyAcrvPKrL7lpUlSeCawDZWylN58IoZJrt4",
+                               // "AIzaSyCI23HUoG4zqAvSwheflDAXaoYDX0cB96c",
+                               //"AIzaSyBoZywSXF5v6bvmQq5ACe2IrOfu7VdVQPU",
+                               "AIzaSyD_jz_Q6UiqssRaKcZIRmcA1JE5tlivVeY",
+                                "AIzaSyChlnIf1epCPc0nqACdXO0CC2lzGqluhS0",
+                                "AIzaSyAgf7HvMzFeCFAI4pP5_DhqGp5zNexaIbw",
+                                "AIzaSyAS6jMX07dsiFHKbfKU_UKZHC6WxPy3FG4",
+                                  "AIzaSyDtjztULpIl_uufAZv9h0osmmOc21MDpeI"
+
+                             /*   "AIzaSyAdVXcc4W_tCZpKpNLeEmXeD2e0DJyCY1k",
+                               "AIzaSyDUuKbQJ3-6fhXcCTU2euSxagTywNSD_EI",
+                                "AIzaSyD9GVedngtNwQD49lmWQ6OGzKsZUIXHT4I",
+                               "AIzaSyAy21E9OQPqVT9TCt2iH6aMowlI6yJ37O0"*/
+
+
+
+               };
+            int indexKey = 0;
             int size = stations.Count;
+            int count = 0;
             for (int i = 0; i < size; i++)
             {
                 for (int j = 0; j < size; j++)
@@ -117,25 +139,33 @@ namespace GetDistance
                         distance[i, j] = 0;
                         duration[i, j] = 0;
                     }
-                    else if (distance[i, j] == -1 && duration[i, j] == -1)
+                    else// if (distance[i, j] == -1 && duration[i, j] == -1)
                     {
                         Station stationI = stations[i];
                         Station stationJ = stations[j];
-                        String result = await GoogleAPI.GetDistanceDuration(stationI.Latitude.ToString(), stationI.Longitude.ToString(), stationJ.Latitude.ToString(), stationJ.Longitude.ToString());
-                        if (result != null)
+                      //  if(stationI.NStudent!=0&&stationJ.NStudent!=0)
                         {
-                            String[] items = result.Split('\n');
-                            distance[i, j] = int.Parse(items[0]);
-                            duration[i, j] = int.Parse(items[1]);
-                            distance[j, i] = distance[i, j];
-                            duration[j, i] = duration[i, j];
+                            count++;
+                            if (count % 2000 == 0)
+                                indexKey++;
+                            String result = await GoogleAPI.GetDistanceDuration(stationI.Latitude.ToString(), stationI.Longitude.ToString(), stationJ.Latitude.ToString(), stationJ.Longitude.ToString(),key[indexKey]);
+                            if (result != null)
+                            {
+                                String[] items = result.Split('\n');
+                                distance[i, j] = int.Parse(items[0]);
+                                duration[i, j] = int.Parse(items[1]);
+                             //   distance[j, i] = distance[i, j];
+                             //   duration[j, i] = duration[i, j];
+                            }
+                            else
+                            {
+                                Console.WriteLine("BI NULL: " + stationI.ID + "-" + stationJ.ID);
+                            }
                         }
-                        else
-                        {
-                            Console.WriteLine("BI NULL: " + stationI.ID + "-" + stationJ.ID);
-                        }
+                       
                     }
                 }
+                Console.WriteLine(count);
             }
             // for DEBUG
             /*for (int i = 0; i < size; i++)

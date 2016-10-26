@@ -82,7 +82,7 @@ namespace RouteProblem.data
                 while ((line = sr.ReadLine()) != null)
                 {
                     tokens = line.Split('\t');
-                    this.stations.Add(new Station(int.Parse(tokens[0]),tokens[4],tokens[5], Double.Parse(tokens[1]), Double.Parse(tokens[2])));
+                    this.stations.Add(new Station(int.Parse(tokens[0]),tokens[4], 1,tokens[4], Double.Parse(tokens[1]), Double.Parse(tokens[2]),school));
                     
                 }
             }
@@ -135,10 +135,14 @@ namespace RouteProblem.data
                 while ((line = sr.ReadLine()) != null)
                 {
                     tokens = line.Split('\t');
-                    station = this.getStation(int.Parse(tokens[3]));
-                    student = new Student(int.Parse(tokens[0]), double.Parse(tokens[1]), double.Parse(tokens[2]), this.school, station);
-                    this.students.Add(student);
-                    station.addStudent(student);
+                    if (tokens[1] !="")
+                    {
+                        station = this.getStation(int.Parse(tokens[3]));
+                        student = new Student(int.Parse(tokens[0]), double.Parse(tokens[1]), double.Parse(tokens[2]), tokens[4], this.school, station);
+                        this.students.Add(student);
+                        station.addStudent(student);
+                    }
+                    
                    
                    
                 }

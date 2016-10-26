@@ -97,10 +97,11 @@ namespace SBPUtils
             await client.DownloadStringTaskAsync(new Uri(uri));
             return returnValue;
         }
-        public static async Task<String> GetDistanceDuration(String lat1, String lng1, String lat2, String lng2)
+        public static async Task<String> GetDistanceDuration(String lat1, String lng1, String lat2, String lng2,String api_key )
         {
-            String API_KEY = "AIzaSyCI23HUoG4zqAvSwheflDAXaoYDX0cB96c";
-            String returnValue = null;
+            //String API_KEY = "AIzaSyBoZywSXF5v6bvmQq5ACe2IrOfu7VdVQPU";
+            String API_KEY= api_key;
+             String returnValue = null;
             WebClient client = new WebClient();
             client.Headers["Accept"] = "application/json";
             client.DownloadStringCompleted += (s1, e1) =>

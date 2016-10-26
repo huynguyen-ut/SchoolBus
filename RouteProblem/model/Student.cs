@@ -10,7 +10,7 @@ namespace RouteProblem.model
     {
         private int id;
         private double lat;
-
+        private string address;
         public double Lat
         {
             get { return lat; }
@@ -50,13 +50,14 @@ namespace RouteProblem.model
             get { return bus; }
             set { bus = value; }
         }
-        public Student(int id,double lat,double lon,School school, Station station) {
+        public Student(int id,double lat,double lon,string address,School school, Station station) {
             this.id = id;
             this.lat = lat;
             this.lon = lon;
             this.station = station;
             this.school = school;
             this.bus = null;
+            this.address = address;
         }
 
 

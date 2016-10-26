@@ -111,6 +111,16 @@ namespace RouteProblem.model
             this.students = new List<Student>();
             this.states = new List<StateBus>();
         }
+        public void ReSet()
+        {
+            this.path = new RouteProblem.Path(id);
+            this.isComplete = false;
+            this.curStation = null;
+            this.runningTime = 0;
+            this.distance = 0;
+            this.students = new List<Student>();
+            this.states = new List<StateBus>();
+        }
         public int nStudentInStation(Station station){
             int count=0;
             foreach (Student student in this.students)
@@ -126,10 +136,12 @@ namespace RouteProblem.model
             {
                 this.runningTime += this.curStation.GetDuration(station) + this.curStation.Stoptime;
                 this.distance += this.curStation.GetDistance(station);
-                 state = new StateBus(station.Id);
+                state = new StateBus(station.Id);
                 state.RunningTime = this.runningTime;
                 state.Distance = this.distance;
                 this.states.Add(state);
+                this.getState(curStation).TimeToBack = this.curStation.GetDuration(station);
+
             }
             else
             {

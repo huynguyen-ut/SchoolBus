@@ -65,5 +65,12 @@ namespace RouteProblem
                  }
            return true;
         }
+        public bool IsContain(Station station) {
+            foreach (Station st in this.stations) {
+                if (st.Id == station.Id)
+                    return true;
+            }
+            return false;
+        }
       }
 }

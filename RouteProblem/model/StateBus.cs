@@ -49,11 +49,26 @@ namespace RouteProblem.model
             }
         }
 
+        public int TimeToBack
+        {
+            get
+            {
+                return Timetoback;
+            }
+
+            set
+            {
+                Timetoback = value;
+            }
+        }
+
+        private int Timetoback;
         public StateBus(int id) {
             this.id = id;
             this.students = new List<Student>();
             this.runningTime = 0;
             this.distance = 0;
+            this.Timetoback = 0;
 
         }
     }

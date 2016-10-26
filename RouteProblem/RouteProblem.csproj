@@ -165,7 +165,10 @@
     <Content Include="data\input\buses.txt" />
     <Content Include="data\input\distance.txt" />
     <Content Include="data\input\stations.txt" />
-    <Content Include="data\input\students.txt" />
+    <Content Include="data\input\students_di_c.txt" />
+    <Content Include="data\input\students_di_s.txt" />
+    <Content Include="data\input\students_ve_c.txt" />
+    <Content Include="data\input\students_ve_s.txt" />
     <Content Include="GoogleMaps.LocationServices.readme.txt" />
   </ItemGroup>
   <ItemGroup>

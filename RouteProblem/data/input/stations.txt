@@ -1,19 +1,99 @@
-﻿0	10.865085	106.6575683	0	"	Trường Kim Đồng
-1	10.8764167	106.654805	78	"	Đầu hẻm đường Lê Thị Riêng, Đường TA 19 - Nguyễn Thị Kiểu, Khu phố 2, Tổ 7
-2	10.8717383	106.6546517	3	"	Đầu hẻm đường 58A Lê Thị Riêng, Đường TA 28, Khu phố 4, Hẻm nhỏ đông học sinh -  Công ty Khang Thịnh Phát
-3	10.8781667	106.6510967	97	"	Đầu hẻm đường Trần Thị Cờ, Hẻm 164
-4	10.8739583	106.6509817	10	"	Đầu hẻm đường Trần Thị Cờ, Đường TA 20
-5	10.87987	106.6509117	4	"	Đầu hẻm đường 175B Trần Thị Cờ, Bên hông café PaPa
-6	10.8727917	106.6503867	9	"	Đầu hẻm đường Trần Thị Cờ
-7	10.88071	106.65096	3	"	Đầu hẻm đường Trần Thị Cờ, Khu phố 6
-8	10.8824217	106.6523883	6	"	Hẻm 890 trong hẻm đường TA 13, Đường TA 13, Khu phố 3
-9	10.868775	106.6545367	3	"	Đầu hẻm đường Lê Thị Riêng, Đường TA 28, Khu phố 4, Trường Lái Xe
-10	10.88175	106.6508233	5	"	Đầu hẻm đường Trần Thị Cờ, Đường TA 13
-11	10.8816083	106.6487483	7	"	Đầu hẻm đường Lê Văn Khương, Đường TA 13
-12	10.8821283	106.6486417	8	"	Đầu hẻm đường 61/4A Lê Văn Khương, Khu phố 5
-13	10.8667183	106.654565	6	"	Đầu hẻm đường Lê Thị Riêng, Đường TA 28, Khu phố 4
-14	10.8847133	106.6481667	8	"	Đầu hẻm đường Lê Văn Khương, Đường TA 09 - Võ Thị Phải
-15	10.8651683	106.649535	5	"	Đầu hẻm đường Lê Văn Khương, Đường TA 03, Bên phía nhà máy bia Tiger
-16	10.8884267	106.6521733	7	"	Đầu hẻm đường 699 Lê Thị Riêng, Khu phố 7, Tổ 9
-17	10.861635	106.6575017	6	"	Đầu đường QL. 1A
-18	10.8920967	106.647105	7	"	Đầu hẻm đường 702 Lê Văn Khương, Khu phố 7, Cuối đường Lê Văn Khương
+﻿0	10.865085	106.6575683	362	"	Trường Kim Đồng
+1	10.8667183	106.654565	1	Hẻm 126, Đường TA 28, Khu phố 4, Phường Thới An, Quận 12	Đường TA 28	4	Đầu hẻm đường Lê Thị Riêng	Thới An	12	Kim Đồng
+2	10.868775	106.6545367	1	Hẻm 182, Đường TA 28, Khu phố 4, Phường Thới An, Quận 12	Đường TA 28	4	Đầu hẻm đường Lê Thị Riêng - Trường Lái Xe	Thới An	12	Kim Đồng
+3	10.8714467	106.65461	1	Hẻm 366, Đường TA 28, Khu phố 4, Phường Thới An, Quận 12	Đường TA 28	4	Đầu hẻm tại 366/2 đường Lê Thị Riêng	Thới An	12	Kim Đồng
+4	10.8717383	106.6546517	1	Hẻm 266, Đường TA 28, Khu phố 4, Phường Thới An, Quận 12	Đường TA 28	4	Đầu hẻm đường Lê Thị Riêng - đông học sinh -  Công ty Khang Thịnh Phát	Thới An	12	Kim Đồng
+5	10.8724767	106.6548717	1	Hẻm 312, Đường TA 28, Khu phố 5, Phường Thới An, Quận 12	Đường TA 28	5	Đầu hẻm đường Lê Thị Riêng	Thới An	12	Kim Đồng
+6	10.87337	106.6551483	1	Đường TA 28, Khu phố 5, Phường Thới An, Quận 12	Đường TA 28	5	Đầu hẻm đường Lê Thị Riêng	Thới An	12	Kim Đồng
+7	10.87435	106.6551167	1	Hẻm 338, Đường TA 28, Khu phố 5, Phường Thới An, Quận 12	Đường TA 28	5	Đầu hẻm đường Lê Thị Riêng	Thới An	12	Kim Đồng
+8	10.87497	106.6550483	1	Hẻm 362, Đường TA 28, Khu phố 5, Phường Thới An, Quận 12	Đường TA 28	5	Đầu hẻm đường Lê Thị Riêng - Bên hông trường Nguyễn Trung Trực	Thới An	12	Kim Đồng
+9	10.8767917	106.6548733	1	Khu phố 2, Phường Thới An, Quận 12	Đường Lê Thị Riêng	2	Đầu hẻm đường Lê Thị Riêng	Thới An	12	Kim Đồng
+10	10.877475	106.6548333	1	Hẻm 640, Khu phố 2, Phường Thới An, Quận 12	Đường Lê Thị Riêng	2	Đầu hẻm tại 640 đường Lê Thị Riêng	Thới An	12	Kim Đồng
+11	10.8783067	106.65474	1	Hẻm 472, Khu phố 2, Phường Thới An, Quận 12	Đường Lê Thị Riêng	2	Đầu hẻm đường Lê Thị Riêng	Thới An	12	Kim Đồng
+12	10.879195	106.6546467	1	Đường TA 16, Khu phố 6, Phường Thới An, Quận 12	Đường TA 16	6	Đầu hẻm đường Lê Thị Riêng	Thới An	12	Kim Đồng
+13	10.88081	106.654425	1	Khu phố 6, Phường Thới An, Quận 12	Đường Lê Thị Riêng	6	Đầu hẻm đường Lê Thị Riêng - Hẻm Xí Nghiệp May	Thới An	12	Kim Đồng
+14	10.88173	106.6541167	1	Khu phố 6, Phường Thới An, Quận 12	Đường Lê Thị Riêng	6	Đầu hẻm đường Lê Thị Riêng	Thới An	12	Kim Đồng
+15	10.882835	106.6535683	1	Đường TA 14, Khu phố 3, Phường Thới An, Quận 12	Đường TA 14	3	Đầu hẻm đường Lê Thị Riêng (Sửa TA 13 = TA 14)	Thới An	12	Kim Đồng
+16	10.8844483	106.6529333	1	Đường TA 11, Khu phố 3, Phường Thới An, Quận 12	Đường TA 11	3	Đầu hẻm đường Lê Thị Riêng	Thới An	12	Kim Đồng
+17	10.885515	106.6528167	1	Đường TA 10, Khu phố 3, Phường Thới An, Quận 12	Đường TA 10	3	Đầu hẻm tại 76/3A đường Lê Thị Riêng	Thới An	12	Kim Đồng
+18	10.8862383	106.6526483	1	Đường TA 09, Khu phố 7, Phường Thới An, Quận 12	Đường TA 09	7	Đầu hẻm tại  470/16 đường Lê Thị Riêng (TA 09 = Võ Thị Phải)	Thới An	12	Kim Đồng
+19	10.88754	106.6523717	1	Đường TA 08, Khu phố 7, Phường Thới An, Quận 12	Đường TA 08	7	Cuối đường Lê Thị Riêng	Thới An	12	Kim Đồng
+20	10.8884267	106.6521733	1	Khu phố 7, Phường Thới An, Quận 12	Đường Lê Thị Riêng	7	Đầu hẻm tại 699 đường Lê Thị Riêng	Thới An	12	Kim Đồng
+21	10.8875183	106.6522167	1	Đường TA 08, Khu phố 7, Phường Thới An, Quận 12	Đường TA 08	7	Đầu hẻm đường Lê Thị Riêng	Thới An	12	Kim Đồng
+22	10.8862017	106.65253	1	Đường TA 09, Khu phố 7, Phường Thới An, Quận 12	Đường TA 09	7	Đầu hẻm đường Lê Thị Riêng	Thới An	12	Kim Đồng
+23	10.8855333	106.6526583	1	Đường TA 10, Khu phố 3, Phường Thới An, Quận 12	Đường TA 10	3	Đầu hẻm đường Lê Thị Riêng	Thới An	12	Kim Đồng
+24	10.8845267	106.6527983	1	Đường TA 11, Khu phố 3, Phường Thới An, Quận 12	Đường TA 11	3	Đầu hẻm đường Lê Thị Riêng	Thới An	12	Kim Đồng
+25	10.88272	106.653475	1	Đường TA 14, Khu phố 3, Phường Thới An, Quận 12	Đường TA 14	3	Đầu hẻm đường Lê Thị Riêng	Thới An	12	Kim Đồng
+26	10.8824217	106.6523883	1	Hẻm 87, Đường TA 14, Khu phố 3, Phường Thới An, Quận 12	Đường TA 14	3	Hẻm 87 trong hẻm đường TA 14	Thới An	12	Kim Đồng
+27	10.8821883	106.6518667	1	Hẻm 73, Đường TA 14, Khu phố 3, Phường Thới An, Quận 12	Đường TA 14	3	Hẻm 73 trong hẻm đường TA 14	Thới An	12	Kim Đồng
+28	10.8812583	106.6509517	1	Đường TA 15, Khu phố 6, Phường Thới An, Quận 12	Đường TA 15	6	Đầu hẻm đường Trần Thị Cờ	Thới An	12	Kim Đồng
+29	10.881475	106.65176	1	Đường TA 15, Khu phố 6, Phường Thới An, Quận 12	Đường TA 15	6	Hẻm 24 trong hẻm đường TA 15	Thới An	12	Kim Đồng
+30	10.8815667	106.6520167	1	Hẻm 18, Đường TA 15, Khu phố 6, Phường Thới An, Quận 12	Đường TA 15	6	Hẻm 18 trong hẻm đường TA 15	Thới An	12	Kim Đồng
+31	10.8820383	106.6538033	1	Đường TA 15, Khu phố 6, Phường Thới An, Quận 12	Đường TA 15	6	Đầu hẻm đường Lê Thị Riêng	Thới An	12	Kim Đồng
+32	10.8817767	106.6539317	1	Hẻm 521, Đường TA 28, Khu phố 6, Phường Thới An, Quận 12	Đường TA 28	6	Đầu hẻm đường Lê Thị Riêng	Thới An	12	Kim Đồng
+33	10.880995	106.6542583	1	Hẻm 196, Đường TA 32, Khu phố 6, Phường Thới An, Quận 12	Đường TA 32	6	Đầu hẻm đường Lê Thị Riêng	Thới An	12	Kim Đồng
+34	10.8790767	106.6545333	1	Đường TA 16, Khu phố 6, Phường Thới An, Quận 12	Đường TA 16	6	Đầu hẻm đường Lê Thị Riêng - Hẻm bên hông chùa	Thới An	12	Kim Đồng
+35	10.8764167	106.654805	1	Đường TA 19, Khu phố 2, Phường Thới An, Quận 12	Đường TA 19	2	Đầu hẻm đường Lê Thị Riêng (TA 19 = Nguyễn Thị Kiêu)	Thới An	12	Kim Đồng
+36	10.8750083	106.6549283	1	Đường TA 19A, Khu phố 5, Phường Thới An, Quận 12	Đường TA 19A	5	Đầu hẻm đường Lê Thị Riêng	Thới An	12	Kim Đồng
+37	10.8743767	106.6549933	1	Đường TA 20, Khu phố 5, Phường Thới An, Quận 12	Đường TA 20	5	Đầu hẻm đường Lê Thị Riêng	Thới An	12	Kim Đồng
+38	10.8741717	106.65405	1	Đường TA 29, Khu phố 5, Phường Thới An, Quận 12	Đường TA 29	5		Thới An	12	Kim Đồng
+39	10.8699833	106.65426	1	Đường TA 21, Khu phố 4, Phường Thới An, Quận 12	Đường TA 21	4	Đầu hẻm đường Lê Thị Riêng	Thới An	12	Kim Đồng
+40	10.8702	106.6535017	1	Đường TA 35, Khu phố 4, Phường Thới An, Quận 12	Đường TA 35	4	Hẻm TA 35 trong hẻm đường TA 21	Thới An	12	Kim Đồng
+41	10.8706367	106.6525667	1	Hẻm 99, Đường TA 21, Khu phố 4, Phường Thới An, Quận 12	Đường TA 21	4	Hẻm 99 trong hẻm đường TA 21	Thới An	12	Kim Đồng
+42	10.8727917	106.6503867	1	Đường TA 21, Khu phố 4, Phường Thới An, Quận 12	Đường TA 21	4	Đầu hẻm đường Trần Thị Cờ	Thới An	12	Kim Đồng
+43	10.871985	106.6495767	1	Hẻm 06, Đường TA 32, Khu phố 4, Phường Thới An, Quận 12	Đường TA 32	4	Đầu hẻm đường Trần Thị Cờ	Thới An	12	Kim Đồng
+44	10.8731067	106.6507067	1	Đường TA 22, Khu phố 5, Phường Thới An, Quận 12	Đường TA 22	5	Đầu hẻm đường Trần Thị Cờ	Thới An	12	Kim Đồng
+45	10.8739583	106.6509817	1	Đường TA 20, Khu phố 5, Phường Thới An, Quận 12	Đường TA 20	5	Đầu hẻm đường Trần Thị Cờ	Thới An	12	Kim Đồng
+46	10.8751817	106.6511333	1	Đường TA 19A, Khu phố 5, Phường Thới An, Quận 12	Đường TA 19A	5	Đầu hẻm đường Trần Thị Cờ	Thới An	12	Kim Đồng
+47	10.87558	106.6511783	1	Đường TA 19, Khu phố 2, Phường Thới An, Quận 12	Đường TA 19	2	Đầu hẻm đường Trần Thị Cờ	Thới An	12	Kim Đồng
+48	10.87594	106.6512067	1	Hẻm 84, Khu phố 2, Phường Thới An, Quận 12	Đường TA 32	2	Đầu hẻm đường Trần Thị Cờ	Thới An	12	Kim Đồng
+49	10.8765733	106.6512617	1	Đường TA 18, Khu phố 2, Phường Thới An, Quận 12	Đường TA 18	2	Đầu hẻm đường Trần Thị Cờ	Thới An	12	Kim Đồng
+50	10.8771383	106.65123	1	Hẻm 144, Đường TA 32, Khu phố 2, Phường Thới An, Quận 12	Đường TA 32	2	Đầu hẻm đường Trần Thị Cờ	Thới An	12	Kim Đồng
+51	10.8781667	106.6510967	1	Đường TA 16, Khu phố 2, Phường Thới An, Quận 12	Đường TA 16	2	Đầu hẻm đường Trần Thị Cờ - Trường Mần Non Bảo Thư	Thới An	12	Kim Đồng
+52	10.8798117	106.6510383	1	Hẻm 196, Đường TA 32, Khu phố 6, Phường Thới An, Quận 12	Đường TA 32	6	Đầu hẻm đường Trần Thị Cờ	Thới An	12	Kim Đồng
+53	10.88071	106.65096	1	Hẻm 220, Đường TA 32, Khu phố 6, Phường Thới An, Quận 12	Đường TA 32	6	Đầu hẻm đường Trần Thị Cờ	Thới An	12	Kim Đồng
+54	10.8810583	106.6509367	1	Đường TA 15, Khu phố 6, Phường Thới An, Quận 12	Đường TA 15	6	Đầu hẻm đường Trần Thị Cờ	Thới An	12	Kim Đồng
+55	10.8819233	106.6508967	1	Đường TA 14, Khu phố 3, Phường Thới An, Quận 12	Đường TA 14	3	Đầu hẻm đường Trần Thị Cờ	Thới An	12	Kim Đồng
+56	10.8840483	106.6513467	1	Đường TA 11, Khu phố 3, Phường Thới An, Quận 12	Đường TA 11	3	Đầu hẻm đường Trần Thị Cờ	Thới An	12	Kim Đồng
+57	10.8847967	106.6509433	1	Đường TA 10, Khu phố 3, Phường Thới An, Quận 12	Đường TA 10	3	Đầu hẻm đường Trần Thị Cờ	Thới An	12	Kim Đồng
+58	10.8867117	106.6502233	1	Đường TA 08, Khu phố 7, Phường Thới An, Quận 12	Đường TA 08	7	Đầu hẻm đường Trần Thị Cờ	Thới An	12	Kim Đồng
+59	10.8889183	106.6492933	1	Đường TA 05, Khu phố 7, Phường Thới An, Quận 12	Đường TA 05	7	Đầu hẻm đường Trần Thị Cờ	Thới An	12	Kim Đồng
+60	10.8893467	106.648975	1	Đường TA 05, Khu phố 7, Phường Thới An, Quận 12	Đường TA 05	7	Đầu hẻm đường Trần Thị Cờ - Hẻm cuối đường	Thới An	12	Kim Đồng
+61	10.8880817	106.6496	1	Đường TA 06, Khu phố 7, Phường Thới An, Quận 12	Đường TA 06	7	Đầu hẻm đường Trần Thị Cờ	Thới An	12	Kim Đồng
+62	10.8868533	106.65011	1	Đường TA 08, Khu phố 7, Phường Thới An, Quận 12	Đường TA 08	7	Đầu hẻm đường Trần Thị Cờ	Thới An	12	Kim Đồng
+63	10.88428	106.6511467	1	Hẻm 55, Đường TA 11, Khu phố 3, Phường Thới An, Quận 12	Đường TA 11	3	Đầu hẻm đường Trần Thị Cờ	Thới An	12	Kim Đồng
+64	10.882625	106.6508617	1	Đường TA 12, Khu phố 3, Phường Thới An, Quận 12	Đường TA 12	3	Đầu hẻm đường Trần Thị Cờ	Thới An	12	Kim Đồng
+65	10.88175	106.6508233	1	Đường TA 13, Khu phố 3, Phường Thới An, Quận 12	Đường TA 13	3	Đầu hẻm đường Trần Thị Cờ	Thới An	12	Kim Đồng
+66	10.8807883	106.650845	1	Đường TA 15, Khu phố 6, Phường Thới An, Quận 12	Đường TA 15	6	Đầu hẻm đường Trần Thị Cờ	Thới An	12	Kim Đồng
+67	10.87987	106.6509117	1	Khu phố 6, Phường Thới An, Quận 12	Đường TA 32	6	Đầu hẻm 175B đường Trần Thị Cờ - Bên hông café PaPa	Thới An	12	Kim Đồng
+68	10.87842	106.65103	1	Đường TA 16, Khu phố 6, Phường Thới An, Quận 12	Đường TA 16	6	Đầu hẻm đường Trần Thị Cờ	Thới An	12	Kim Đồng
+69	10.8756333	106.6511517	1	Đường TA 19, Khu phố 2, Phường Thới An, Quận 12	Đường TA 19	2	Đầu hẻm đường Trần Thị Cờ	Thới An	12	Kim Đồng
+70	10.871755	106.6493517	1	Đường TA 32, Khu phố 4, Phường Thới An, Quận 12	Đường TA 32	4	Đầu hẻm đường Lê Văn Khương	Thới An	12	Kim Đồng
+71	10.873215	106.64926	1	Hẻm 292, Đường Lê Văn Khương, Khu phố 4, Phường Thới An, Quận 12	Đường Lê Văn Khương	4	Đầu hẻm đường Lê Văn Khương	Thới An	12	Kim Đồng
+72	10.87511	106.6491533	1	Khu phố 5, Phường Thới An, Quận 12	Đường Lê Văn Khương	5	Đầu hẻm đường Lê Văn Khương - Trường Mầm Non Sơn Ca	Thới An	12	Kim Đồng
+73	10.8769833	106.6490583	1	Khu phố 2, Phường Thới An, Quận 12	Đường Lê Văn Khương	2	Đầu hẻm đường Lê Văn Khương	Thới An	12	Kim Đồng
+74	10.8781317	106.6489683	1	Đường TA 16, Khu phố 6, Phường Thới An, Quận 12	Đường TA 16	6	Đầu hẻm đường Lê Văn Khương	Thới An	12	Kim Đồng
+75	10.8808483	106.6488283	1	Đường TA 15, Khu phố 6, Phường Thới An, Quận 12	Đường TA 15	6	Đầu hẻm đường Lê Văn Khương	Thới An	12	Kim Đồng
+76	10.8816083	106.6487483	1	Đường TA 13, Khu phố 3, Phường Thới An, Quận 12	Đường TA 13	3	Đầu hẻm đường Lê Văn Khương	Thới An	12	Kim Đồng
+77	10.8821283	106.6486417	1	Hẻm 462, Đường Lê Văn Khương, Khu phố 3, Phường Thới An, Quận 12	Đường Lê Văn Khương	3	Đầu hẻm đường Lê Văn Khương	Thới An	12	Kim Đồng
+78	10.8827017	106.6485383	1	Đường TA 12, Khu phố 3, Phường Thới An, Quận 12	Đường TA 12	3	Đầu hẻm đường Lê Văn Khương	Thới An	12	Kim Đồng
+79	10.8829183	106.6484933	1	Đường TA 11, Khu phố 3, Phường Thới An, Quận 12	Đường TA 11	3	Đầu hẻm đường Lê Văn Khương	Thới An	12	Kim Đồng
+80	10.8847133	106.6481667	1	Đường TA 09, Khu phố 7, Phường Thới An, Quận 12	Đường TA 09	7	Đầu hẻm đường Lê Văn Khương	Thới An	12	Kim Đồng
+81	10.88679	106.647815	1	Hẻm 572, Đường Lê Văn Khương, Khu phố 7, Phường Thới An, Quận 12	Đường Lê Văn Khương	7	Đầu hẻm đường Lê Văn Khương	Thới An	12	Kim Đồng
+82	10.88733	106.647725	1	Đường TA 06, Khu phố 7, Phường Thới An, Quận 12	Đường TA 06	7	Đầu hẻm đường Lê Văn Khương	Thới An	12	Kim Đồng
+83	10.88892368	106.6473663	1	Đường TA 05, Khu phố 7, Phường Thới An, Quận 12	Đường TA 05	7	Đầu hẻm đường Lê Văn Khương	Thới An	12	Kim Đồng
+84	10.8893683	106.6473167	1	Hẻm 640, Đường Lê Văn Khương, Khu phố 7, Phường Thới An, Quận 12	Đường Lê Văn Khương	7	Đầu hẻm đường Lê Văn Khương	Thới An	12	Kim Đồng
+85	10.8908283	106.6471733	1	Hẻm 662, Đường Lê Văn Khương, Khu phố 7, Phường Thới An, Quận 12	Đường Lê Văn Khương	7	Đầu hẻm đường Lê Văn Khương	Thới An	12	Kim Đồng
+86	10.8913617	106.6471583	1	Hẻm 672, Đường Lê Văn Khương, Khu phố 7, Phường Thới An, Quận 12	Đường Lê Văn Khương	7	Đầu hẻm đường Lê Văn Khương	Thới An	12	Kim Đồng
+87	10.8920967	106.647105	1	Hẻm 702, Đường Lê Văn Khương, Khu phố 7, Phường Thới An, Quận 12	Đường Lê Văn Khương	7	Đầu hẻm đường Lê Văn Khương - Cuối đường Lê Văn Khương	Thới An	12	Kim Đồng
+88	10.8907417	106.6470567	1	Hẻm 521, Đường Lê Văn Khương, Khu phố 7, Phường Thới An, Quận 12	Đường Lê Văn Khương	7	Đầu hẻm đường Lê Văn Khương	Thới An	12	Kim Đồng
+89	10.8826	106.6485217	1	Hẻm 399, Đường Lê Văn Khương, Khu phố 3, Phường Thới An, Quận 12	Đường Lê Văn Khương	3	Đầu hẻm đường Lê Văn Khương	Thới An	12	Kim Đồng
+90	10.8760583	106.6490067	1	Đường Nguyễn Ảnh Thủ, Khu phố 2, Phường Thới An, Quận 12	Đường Nguyễn Ảnh Thủ	2	Đầu hẻm đường Lê Văn Khương	Thới An	12	Kim Đồng
+91	10.865569	106.649636	1	Đường TA 03, Khu phố 1, Phường Thới An, Quận 12	Đường TA 03	1	Đầu hẻm đường Lê Văn Khương	Thới An	12	Kim Đồng
+92	10.864995	106.64955	1	Đường TA 19, Khu phố 1, Phường Thới An, Quận 12	Đường TA 19	1	Đầu hẻm đường Lê Văn Khương	Thới An	12	Kim Đồng
+93	10.8635833	106.649655	1	Đường TA 04, Khu phố 1, Phường Thới An, Quận 12	Đường TA 04	1	Đầu hẻm đường Lê Văn Khương	Thới An	12	Kim Đồng
+94	10.861915	106.650585	1	Khu phố 1, Phường Thới An, Quận 12	Đường QL 1A	1	Đầu đường QL. 1A	Thới An	12	Kim Đồng
+95	10.861635	106.6575017	1	Hẻm 1071, Đường QL1A, Khu phố 1, Phường Thới An, Quận 12	Đường QL 1A	1	Đầu đường QL. 1A	Thới An	12	Kim Đồng
+96	10.861525	106.66024	1	Đường TA 08A, Khu phố 1, Phường Thới An, Quận 12	Đường QL 1A	1	Đầu hẻm đường QL. 1A	Thới An	12	Kim Đồng
+97	10.861561	106.669054	1	Đường TA 07, Khu phố 1, Phường Thới An, Quận 12	Đường QL 1A	1	Đầu hẻm đường QL. 1A	Thới An	12	Kim Đồng
+98	10.861855	106.669947	1	Hẻm 1218, Đường QL 1A, Khu phố 1, Phường Thới An, Quận 12	Đường QL 1A	1	Đầu hẻm đường QL. 1A	Thới An	12	Kim Đồng
